@@ -65,7 +65,7 @@ function makeEnvelope(name, email, company){
 function makeRecipientViewRequest(name, email) {
    let viewRequest = new docusign.RecipientViewRequest();
 
-   viewRequest.returnUrl = "https://docu-sign-o-auth-l2ol-pn50xxh4g-shubhamtribhuvan8.vercel.app/docusign-success";
+   viewRequest.returnUrl = "https://docu-sign-o-auth-l2ol-pn50xxh4g-shubhamtribhuvan8.vercel.app/docusign-success?event=viewing_complete";
    viewRequest.authenticationMethod = 'none';
    viewRequest.email = email;
    viewRequest.userName = name;
@@ -100,7 +100,7 @@ app.get("/", async (request, response) => {
    response.sendFile(path.join(__dirname, "public"));
 });
 
-app.get("/success", (request, response) => {
+app.get("/docusign-success?event=viewing_complete", (request, response) => {
    response.send(`<h1 style={textalign:"center"}>Successfully Done With DocuSign!</>`);
  });
 
